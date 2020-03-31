@@ -12,11 +12,13 @@ import GoogleMaps
 private let coordinate = CLLocationCoordinate2D(latitude: 55.753795, longitude: 37.621153)
 
 class GoogleMapView: GMSMapView  {
+    
+    let gestureRecognizer = UITapGestureRecognizer()
 
+    //MARK: - Init and configure
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
-        addMarker(coordinate)
     }
     
     required init?(coder: NSCoder) {
@@ -32,9 +34,39 @@ class GoogleMapView: GMSMapView  {
         
         self.settings.compassButton = true
         self.settings.myLocationButton = true
+        self.addGestureRecognizer(gestureRecognizer)
     }
     
+    //MARK: -
+    private func centeredCamera(_ position: CLLocationCoordinate2D) {
+        let zoom = self.camera.zoom
+        let camera = GMSCameraPosition.camera(withTarget: position, zoom: zoom)
+     
+        self.animate(to: camera)
+        
+        switch gestureRecognizer.state {
+        case .began:
+            print("began")
+        case .cancelled:
+            print("cancelled")
+        case .changed:
+            print("changed")
+        case .ended:
+            print("ended")
+        case .failed:
+            print("failed")
+        case .possible:
+            print("possible")
+        case .recognized:
+            print("recognized")
+        default:
+            print("default")
+        }
+    }
+    
+    //MARK: -
     func addMarker(_ position: CLLocationCoordinate2D) {
+        centeredCamera(position)
         let marker = GMSMarker(position: position)
         marker.map = self
     }

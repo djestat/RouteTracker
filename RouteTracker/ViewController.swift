@@ -57,15 +57,26 @@ class GoogleMapViewController: UIViewController, HeaderControlViewDelegate {
         self.view.addSubview(gMapView!)
     }
     
-    // MARK: - Location
+    // MARK: - Location button functions
     
     func startTracker() {
         locationManager.manager?.startUpdatingLocation()
     }
     
+    func stopTracker() {
+        locationManager.manager?.stopUpdatingLocation()
+    }
+    
     func didPressedStartTrackerButton() {
-//        startTracker()
-        print("Start tracker")
+        if let isStarted = header?.isStartedTracker {
+            if isStarted {
+                startTracker()
+                print("Start tracker")
+            } else if !isStarted {
+                stopTracker()
+                print("Stop tracker")
+            }
+        }
     }
 
 }
@@ -73,8 +84,10 @@ class GoogleMapViewController: UIViewController, HeaderControlViewDelegate {
 extension GoogleMapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        if let firstLocation = locations.first {
-            print(firstLocation)
+        if let lastLocation = locations.last {
+            print(lastLocation)
+            let position: CLLocationCoordinate2D = lastLocation.coordinate
+            gMapView?.addMarker(position)
         }
     }
     

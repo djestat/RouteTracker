@@ -18,7 +18,9 @@ class LocationManager {
     func configure() {
         manager = CLLocationManager()
         manager?.requestWhenInUseAuthorization()
-        manager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+//        manager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        manager?.desiredAccuracy = .leastNormalMagnitude
+        manager?.distanceFilter = 1.0
     }
 
 }
