@@ -69,20 +69,52 @@ class GoogleMapViewController: UIViewController, HeaderControlViewDelegate {
     
     func didPressedShowLastRouteButton() {
         print("didPressedShowLastRouteButton")
-        gMapView?.showRouteTestsPath()
+        if let isStarted = header?.isStartedTracker {
+            if isStarted {
+                showAlert()
+            } else if !isStarted {
+                gMapView?.showRouteTestsPath()
+            }
+        }
     }
     
     func didPressedStartTrackerButton() {
-        if let isStarted = header?.isStartedTracker {
-            if isStarted {
+        if let isStoped = header?.isStartedTracker {
+            if isStoped {
                 gMapView?.clear()
                 startTracker()
                 print("Start tracker")
-            } else if !isStarted {
+            } else if !isStoped {
                 stopTracker()
                 print("Stop tracker")
             }
         }
+    }
+    
+    //MARK: - Alert and function for Show Last Track
+    
+    func showAlert() {
+        let alert = UIAlertController(title: "Show Last Track!", message: "Your tracking is in progress. Stop tracking your route?", preferredStyle: UIAlertController.Style.alert)
+        
+        let okAction = UIAlertAction(title: "Ok", style: .default) {
+            UIAlertAction in
+            self.okAlert()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
+            UIAlertAction in
+        }
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func okAlert() {
+        gMapView?.clear()
+        stopTracker()
+        header?.setInStartStateTrackerButton()
+        gMapView?.showRouteTestsPath()
     }
 
 }

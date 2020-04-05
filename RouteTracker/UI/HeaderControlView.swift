@@ -71,6 +71,18 @@ class HeaderControlView: UIView, HeaderControlViewDelegate {
         ])
     }
     
+    // MARK: - Start / stop button Functions
+    
+    public func setInStartStateTrackerButton() {
+        startTrackerButton.setTitle("Start", for: .normal)
+        isStartedTracker = false
+    }
+    
+    private func setInStopStateTrackerButton() {
+        startTrackerButton.setTitle("Stop", for: .normal)
+        isStartedTracker = true
+    }
+    
     // MARK: - Delegate Function
 
     @objc func didPressedShowLastRouteButton() {
@@ -80,12 +92,10 @@ class HeaderControlView: UIView, HeaderControlViewDelegate {
     @objc func didPressedStartTrackerButton() {
         print("1 \(isStartedTracker)")
         if !isStartedTracker {
-            startTrackerButton.setTitle("Stop", for: .normal)
-            isStartedTracker = true
+            setInStopStateTrackerButton()
             print("2 \(isStartedTracker)")
         } else if isStartedTracker {
-            startTrackerButton.setTitle("Start", for: .normal)
-            isStartedTracker = false
+            setInStartStateTrackerButton()
             print("3 \(isStartedTracker)")
         }
         delegate.didPressedStartTrackerButton()
