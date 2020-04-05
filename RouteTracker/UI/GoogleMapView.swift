@@ -12,6 +12,8 @@ import GoogleMaps
 private let coordinate = CLLocationCoordinate2D(latitude: 55.753795, longitude: 37.621153)
 
 class GoogleMapView: GMSMapView  {
+    
+    public let routePath: GMSMutablePath = GMSMutablePath()
         
     //MARK: - Init and configure
     override init(frame: CGRect) {
@@ -36,8 +38,8 @@ class GoogleMapView: GMSMapView  {
     
     //MARK: - Centered Camera
     private func centeredCamera(_ position: CLLocationCoordinate2D) {
-        let zoom = self.camera.zoom
-        let camera = GMSCameraPosition.camera(withTarget: position, zoom: zoom)
+//        let zoom = self.camera.zoom
+        let camera = GMSCameraPosition.camera(withTarget: position, zoom: 17)
         self.animate(to: camera)
     }
     
@@ -46,20 +48,56 @@ class GoogleMapView: GMSMapView  {
         centeredCamera(position)
         let marker = GMSMarker(position: position)
         marker.icon = UIImage(named: "flag_icon")
+        marker.title = "Now"
+        marker.snippet = "Now"
         marker.map = self
+    }
+    
+    public func showStartFinishMarkers(_ path: GMSMutablePath) {
+        let startPosition = path.coordinate(at: 0)
+        let countDotsInPath = path.count() - 1
+        let finishPosition = path.coordinate(at: countDotsInPath)
+
+        let startMarker = GMSMarker(position: startPosition)
+        startMarker.icon = UIImage(named: "start")
+        startMarker.title = "Start"
+        startMarker.snippet = "Track #1"
+        startMarker.map = self
+        
+        let finishMarker = GMSMarker(position: finishPosition)
+        finishMarker.icon = UIImage(named: "finish")
+        finishMarker.title = "Finish"
+        finishMarker.snippet = "Time in way: 1:00"
+        finishMarker.map = self
+    }
+    
+    //MARK: - Add marker
+    public func drawRoute(_ newPosition: CLLocationCoordinate2D) {
+        centeredCamera(newPosition)
+        routePath.add(newPosition)
+        let polyline = GMSPolyline(path: routePath)
+        polyline.strokeWidth = 7
+        polyline.geodesic = true
+        polyline.map = self
+        polyline.strokeColor = .systemRed
     }
     
     //MARK: - Show route path 
     
-    func showLastRoutePath(_ path: GMSMutablePath) {
+    public func showLastRoute(_ path: GMSMutablePath) {
         self.clear()
         let bounds = GMSCoordinateBounds(path: path)
         let camera = GMSCameraUpdate.fit(bounds, withPadding: 50)
+        let polyline = GMSPolyline(path: path)
+        polyline.strokeWidth = 7
+        polyline.geodesic = true
+        polyline.map = self
+        polyline.strokeColor = .systemRed
         self.animate(with: camera)
+        showStartFinishMarkers(path)
     }
     
-    func showRouteTestsPath() {
-        self.clear()
+    public func showRouteTestsPath() {
         let path = GMSMutablePath()
         var latitude: CLLocationDegrees = 55.753795
         var longitude:  CLLocationDegrees = 37.621153
@@ -69,9 +107,9 @@ class GoogleMapView: GMSMapView  {
             latitude = latitude - randomDouble
             longitude = longitude + randomDouble
             let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-            addMarker(coordinate)
+//            addMarker(coordinate)
             path.add(coordinate)
         }
-        showLastRoutePath(path)
+        showLastRoute(path)
     }
 }

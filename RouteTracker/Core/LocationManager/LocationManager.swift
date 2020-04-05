@@ -17,9 +17,9 @@ class LocationManager {
     
     func configure() {
         manager = CLLocationManager()
-        manager?.requestAlwaysAuthorization()
         manager?.allowsBackgroundLocationUpdates = true
         manager?.pausesLocationUpdatesAutomatically = false
+        manager?.requestAlwaysAuthorization()
         manager?.startMonitoringSignificantLocationChanges()
         manager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
 //        manager?.desiredAccuracy = .leastNormalMagnitude

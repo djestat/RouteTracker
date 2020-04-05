@@ -21,9 +21,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>For tracking your route</string>
+	<string>For tracking your route in background mode</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>For tracking your route</string>
+	<string>For tracking your route when you use app</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

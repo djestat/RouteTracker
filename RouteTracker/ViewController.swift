@@ -95,7 +95,7 @@ extension GoogleMapViewController: CLLocationManagerDelegate {
             let position: CLLocationCoordinate2D = lastLocation.coordinate
             if let isStarted = header?.isStartedTracker {
                 if isStarted {
-                    gMapView?.addMarker(position)
+                    gMapView?.drawRoute(position)
                 }
             }
         }
