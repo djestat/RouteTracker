@@ -12,9 +12,7 @@ import GoogleMaps
 private let coordinate = CLLocationCoordinate2D(latitude: 55.753795, longitude: 37.621153)
 
 class GoogleMapView: GMSMapView  {
-    
-    let gestureRecognizer = UITapGestureRecognizer()
-
+        
     //MARK: - Init and configure
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,40 +32,46 @@ class GoogleMapView: GMSMapView  {
         
         self.settings.compassButton = true
         self.settings.myLocationButton = true
-        self.addGestureRecognizer(gestureRecognizer)
     }
     
-    //MARK: -
+    //MARK: - Centered Camera
     private func centeredCamera(_ position: CLLocationCoordinate2D) {
         let zoom = self.camera.zoom
         let camera = GMSCameraPosition.camera(withTarget: position, zoom: zoom)
-     
         self.animate(to: camera)
-        
-        switch gestureRecognizer.state {
-        case .began:
-            print("began")
-        case .cancelled:
-            print("cancelled")
-        case .changed:
-            print("changed")
-        case .ended:
-            print("ended")
-        case .failed:
-            print("failed")
-        case .possible:
-            print("possible")
-        case .recognized:
-            print("recognized")
-        default:
-            print("default")
-        }
     }
     
-    //MARK: -
+    //MARK: - Add marker
     func addMarker(_ position: CLLocationCoordinate2D) {
         centeredCamera(position)
         let marker = GMSMarker(position: position)
+        marker.icon = UIImage(named: "flag_icon")
         marker.map = self
+    }
+    
+    //MARK: - Show route path 
+    
+    func showLastRoutePath(_ path: GMSMutablePath) {
+        self.clear()
+        let bounds = GMSCoordinateBounds(path: path)
+        let camera = GMSCameraUpdate.fit(bounds, withPadding: 50)
+        self.animate(with: camera)
+    }
+    
+    func showRouteTestsPath() {
+        self.clear()
+        let path = GMSMutablePath()
+        var latitude: CLLocationDegrees = 55.753795
+        var longitude:  CLLocationDegrees = 37.621153
+
+        for _ in 0...20 {
+            let randomDouble: Double = Double.random(in: 0.009...3)
+            latitude = latitude - randomDouble
+            longitude = longitude + randomDouble
+            let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            addMarker(coordinate)
+            path.add(coordinate)
+        }
+        showLastRoutePath(path)
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 
 protocol HeaderControlViewDelegate: class {
+    func didPressedShowLastRouteButton()
     func didPressedStartTrackerButton()
 }
 
@@ -17,10 +18,20 @@ class HeaderControlView: UIView, HeaderControlViewDelegate {
     weak var delegate: HeaderControlViewDelegate!
     public var isStartedTracker: Bool = false
 
+    private var showLastRouteButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = 20
+        button.setTitle("Show Last Route", for: .normal)
+        button.backgroundColor = .systemBlue
+        button.setTitleColor(.systemGray, for: .highlighted)
+        button.addTarget(self, action: #selector(didPressedShowLastRouteButton), for: .touchUpInside)
+        return button
+    }()
+    
     private var startTrackerButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-       
         button.layer.cornerRadius = 20
         button.setTitle("Start", for: .normal)
         button.backgroundColor = .systemBlue
@@ -39,6 +50,7 @@ class HeaderControlView: UIView, HeaderControlViewDelegate {
     }
     
     func addSubviews() {
+        addSubview(showLastRouteButton)
         addSubview(startTrackerButton)
         
         let safeAreaSpacing: CGFloat = 12
@@ -47,8 +59,11 @@ class HeaderControlView: UIView, HeaderControlViewDelegate {
         let widthButton: CGFloat = 80
         
         NSLayoutConstraint.activate([
-//            startTrackerButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: safeAreaSpacing),
-//            startTrackerButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: safeAreaSpacing),
+            showLastRouteButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: safeAreaSpacing),
+            showLastRouteButton.heightAnchor.constraint(equalToConstant: heightButton),
+//            showLastRouteButton.rightAnchor.constraint(equalTo: startTrackerButton.leftAnchor, constant: -safeAreaSpacing),
+            showLastRouteButton.widthAnchor.constraint(equalToConstant: widthButton * 2),
+            showLastRouteButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -safeAreaSpacing),
             startTrackerButton.heightAnchor.constraint(equalToConstant: heightButton),
             startTrackerButton.widthAnchor.constraint(equalToConstant: widthButton),
             startTrackerButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -safeAreaSpacing),
@@ -58,6 +73,10 @@ class HeaderControlView: UIView, HeaderControlViewDelegate {
     
     // MARK: - Delegate Function
 
+    @objc func didPressedShowLastRouteButton() {
+        delegate.didPressedShowLastRouteButton()
+    }
+    
     @objc func didPressedStartTrackerButton() {
         print("1 \(isStartedTracker)")
         if !isStartedTracker {

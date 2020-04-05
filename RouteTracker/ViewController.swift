@@ -67,9 +67,15 @@ class GoogleMapViewController: UIViewController, HeaderControlViewDelegate {
         locationManager.manager?.stopUpdatingLocation()
     }
     
+    func didPressedShowLastRouteButton() {
+        print("didPressedShowLastRouteButton")
+        gMapView?.showRouteTestsPath()
+    }
+    
     func didPressedStartTrackerButton() {
         if let isStarted = header?.isStartedTracker {
             if isStarted {
+                gMapView?.clear()
                 startTracker()
                 print("Start tracker")
             } else if !isStarted {
@@ -87,7 +93,11 @@ extension GoogleMapViewController: CLLocationManagerDelegate {
         if let lastLocation = locations.last {
             print(lastLocation)
             let position: CLLocationCoordinate2D = lastLocation.coordinate
-            gMapView?.addMarker(position)
+            if let isStarted = header?.isStartedTracker {
+                if isStarted {
+                    gMapView?.addMarker(position)
+                }
+            }
         }
     }
     
