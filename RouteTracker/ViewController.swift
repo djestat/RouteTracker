@@ -8,18 +8,24 @@
 
 import UIKit
 import CoreLocation
+import GoogleMaps
 
 class GoogleMapViewController: UIViewController, HeaderControlViewDelegate {
 
     var header: HeaderControlView?
     var gMapView: GoogleMapView?
+    var routeName: String = ""
+    let routePath: GMSMutablePath = GMSMutablePath()
     let locationManager = LocationManager()
-    
+    let realmAdapter = RealmAdapter()
+    let helper: Helper = Helper()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         locationManager.manager?.delegate = self
         addSubviews()
+        
     }
     
     // MARK: - Add Subviews
@@ -57,7 +63,7 @@ class GoogleMapViewController: UIViewController, HeaderControlViewDelegate {
         self.view.addSubview(gMapView!)
     }
     
-    // MARK: - Location button functions
+    // MARK: - Header location button functions
     
     func startTracker() {
         locationManager.manager?.startUpdatingLocation()
@@ -73,7 +79,8 @@ class GoogleMapViewController: UIViewController, HeaderControlViewDelegate {
             if isStarted {
                 showAlert()
             } else if !isStarted {
-                gMapView?.showRouteTestsPath()
+//                gMapView?.showRouteTestsPath()
+                showLastRoute()
             }
         }
     }
@@ -81,15 +88,48 @@ class GoogleMapViewController: UIViewController, HeaderControlViewDelegate {
     func didPressedStartTrackerButton() {
         if let isStoped = header?.isStartedTracker {
             if isStoped {
+                setNameForRoute()
                 gMapView?.clear()
                 startTracker()
                 print("Start tracker")
             } else if !isStoped {
                 stopTracker()
+                clearPathAndNameForRoute()
                 print("Stop tracker")
             }
         }
     }
+    
+    //MARK: - Realm function for show and save Track
+
+    func showLastRoute() {
+        let path: GMSMutablePath = realmAdapter.getLastRoute()
+        gMapView?.showLastRoute(path)
+    }
+    
+    func saveRouteIntoRealm(_ newPosition: CLLocationCoordinate2D) {
+        let date = Date.init(timeIntervalSinceNow: 0)
+        let time = helper.convertDateToInt(date.description)
+        realmAdapter.saveRoutePathDotsPosition(time, routeName, newPosition)
+        routePath.add(newPosition)
+        gMapView?.drawRoute(newPosition, routePath)
+    }
+    
+    //MARK: - State configure function for show and save Track
+    
+    func setNameForRoute() {
+        let date: Date = Date(timeIntervalSinceNow: 0)
+        print(date)
+        let dateFormat = self.helper.convertDateToName(date.description)
+        print(dateFormat)
+        routeName = dateFormat
+    }
+    
+    func clearPathAndNameForRoute() {
+        routeName = ""
+        routePath.removeAllCoordinates()
+    }
+    
     
     //MARK: - Alert and function for Show Last Track
     
@@ -114,7 +154,7 @@ class GoogleMapViewController: UIViewController, HeaderControlViewDelegate {
         gMapView?.clear()
         stopTracker()
         header?.setInStartStateTrackerButton()
-        gMapView?.showRouteTestsPath()
+        showLastRoute()
     }
 
 }
@@ -127,7 +167,7 @@ extension GoogleMapViewController: CLLocationManagerDelegate {
             let position: CLLocationCoordinate2D = lastLocation.coordinate
             if let isStarted = header?.isStartedTracker {
                 if isStarted {
-                    gMapView?.drawRoute(position)
+                    saveRouteIntoRealm(position)
                 }
             }
         }

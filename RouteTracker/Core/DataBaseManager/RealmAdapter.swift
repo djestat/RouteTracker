@@ -5,10 +5,40 @@
 //  Created by Igor on 05.04.2020.
 //  Copyright © 2020 Igor Gapanovich. All rights reserved.
 //
-/*
-import Foundation
-import RealmSwift
 
+import Foundation
+import CoreLocation
+import RealmSwift
+import GoogleMaps
+
+final class RealmAdapter {
+    
+    private let realm: RealmDataBaseManager = RealmDataBaseManager()
+    private let helper: Helper = Helper()
+    
+    func saveRoutePathDotsPosition(_ time: Int, _ nameRoute: String,_ position: CLLocationCoordinate2D ) {
+        let routeDotCoordinate = REALMRouteDotsCoordinates(time: time, ownerName: nameRoute, latitude: position.latitude, longitude: position.longitude)
+        realm.save(data: routeDotCoordinate)
+    }
+    
+    func getLastRoute() -> GMSMutablePath {
+        let routePath: GMSMutablePath = GMSMutablePath()
+        let arrayOfDots = realm.getDotsFromRoute(REALMRouteDotsCoordinates.self)
+        if let lastDot = arrayOfDots.last {
+            let routeName = lastDot.ownerName
+            for dot in arrayOfDots {
+                if dot.ownerName == routeName{
+                    let coord: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: dot.latitude, longitude: dot.longitude)
+                    routePath.add(coord)
+                }
+            }
+        }
+        return routePath
+    }
+    
+}
+
+/*
 final class RealmAdapter {
         
     private var realmNotificationTokens: NotificationToken?

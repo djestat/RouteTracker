@@ -12,9 +12,7 @@ import GoogleMaps
 private let coordinate = CLLocationCoordinate2D(latitude: 55.753795, longitude: 37.621153)
 
 class GoogleMapView: GMSMapView  {
-    
-    public let routePath: GMSMutablePath = GMSMutablePath()
-        
+            
     //MARK: - Init and configure
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,28 +52,30 @@ class GoogleMapView: GMSMapView  {
     }
     
     public func showStartFinishMarkers(_ path: GMSMutablePath) {
-        let startPosition = path.coordinate(at: 0)
-        let countDotsInPath = path.count() - 1
-        let finishPosition = path.coordinate(at: countDotsInPath)
-
-        let startMarker = GMSMarker(position: startPosition)
-        startMarker.icon = UIImage(named: "start")
-        startMarker.title = "Start"
-        startMarker.snippet = "Track #1"
-        startMarker.map = self
-        
-        let finishMarker = GMSMarker(position: finishPosition)
-        finishMarker.icon = UIImage(named: "finish")
-        finishMarker.title = "Finish"
-        finishMarker.snippet = "Time in way: 1:00"
-        finishMarker.map = self
+        let count = path.count()
+        if count >= 2 {
+            let startPosition = path.coordinate(at: 0)
+            let countDotsInPath = path.count() - 1
+            let finishPosition = path.coordinate(at: countDotsInPath)
+            
+            let startMarker = GMSMarker(position: startPosition)
+            startMarker.icon = UIImage(named: "start")
+            startMarker.title = "Start"
+            startMarker.snippet = "Track #1"
+            startMarker.map = self
+            
+            let finishMarker = GMSMarker(position: finishPosition)
+            finishMarker.icon = UIImage(named: "finish")
+            finishMarker.title = "Finish"
+            finishMarker.snippet = "Time in way: 1:00"
+            finishMarker.map = self
+        }
     }
     
     //MARK: - Add marker
-    public func drawRoute(_ newPosition: CLLocationCoordinate2D) {
+    public func drawRoute(_ newPosition: CLLocationCoordinate2D, _ path: GMSMutablePath) {
         centeredCamera(newPosition)
-        routePath.add(newPosition)
-        let polyline = GMSPolyline(path: routePath)
+        let polyline = GMSPolyline(path: path)
         polyline.strokeWidth = 7
         polyline.geodesic = true
         polyline.map = self

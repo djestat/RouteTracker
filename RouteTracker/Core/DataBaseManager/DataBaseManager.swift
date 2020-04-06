@@ -10,34 +10,42 @@ import Foundation
 import RealmSwift
 
 class RealmDataBaseManager {
-    static let deletIfMigration = Realm.Configuration.init(deleteRealmIfMigrationNeeded: true)
+    private let deletIfMigration = Realm.Configuration.init(deleteRealmIfMigrationNeeded: true)
     
     //MARK: - Realm Read current routes
-    static func getCurrentRoute<T: Object>(_ result: T.Type) -> Results<T> {
+    func getCurrentRoute (_ result: REALMRoute.Type) -> Results<REALMRoute> {
         let realm = try! Realm(configuration: deletIfMigration)
         print(realm.configuration.fileURL!)
-        print("READING REALM DATA!!! TYPE------>\(T.self)<------")
+        print("READING REALM DATA!!! TYPE------>REALMRoute<------")
         return realm.objects(result)
     }
     
     //MARK: - Realm Read all routes
-    static func getAllRoutes<T: Object>(_ result: T.Type) -> Results<T> {
+    func getAllRoutes(_ result: REALMRoute.Type) -> Results<REALMRoute> {
         let realm = try! Realm(configuration: deletIfMigration)
         print(realm.configuration.fileURL!)
-        print("READING REALM DATA!!! TYPE------>\(T.self)<------")
-        return realm.objects(result)
+        print("READING REALM DATA!!! TYPE------>\(REALMRoute.self)<------")
+        return realm.objects(result).sorted(byKeyPath: "name", ascending: true)
     }
     
     //MARK: - Realm get dots in routes
-    static func getDotsInRoutes<T: Object>(_ result: T.Type, _ searchingText: String) -> Results<T> {
+    
+    func getDotsFromRoute<T: Object>(_ result: T.Type) -> Results<T> {
         let realm = try! Realm(configuration: deletIfMigration)
         print(realm.configuration.fileURL!)
         print("SEARCHING IN REALM DATA!!! TYPE------>\(T.self)<------")
-        return realm.objects(result).filter("name CONTAINS[cd] '\(searchingText)'")
+        return realm.objects(result).sorted(byKeyPath: "time", ascending: true)
+    }
+    
+    func getDotsFromRouteByName<T: Object>(_ result: T.Type, _ routeName: String) -> Results<T> {
+        let realm = try! Realm(configuration: deletIfMigration)
+        print(realm.configuration.fileURL!)
+        print("SEARCHING IN REALM DATA!!! TYPE------>\(T.self)<------")
+        return realm.objects(result).filter("ownerName CONTAINS[cd] '\(routeName)'")
     }
     
     //MARK: - Realm save
-    static func save<T: Object>(data: [T]) {
+    func save<T: Object>(data: T) {
         let realm = try! Realm(configuration: deletIfMigration)
         try! realm.write {
             realm.add(data, update: .modified)
@@ -47,7 +55,7 @@ class RealmDataBaseManager {
     }
     
     //MARK: - Realm delete route
-    static func delet<T: Object>(data: [T], routeID: Int) {
+    func delet<T: Object>(data: [T], routeID: Int) {
         let realm = try! Realm(configuration: deletIfMigration)
         try! realm.write {
             let deleteData = realm.objects(T.self).filter("id == %i", routeID).first

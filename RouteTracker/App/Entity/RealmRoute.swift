@@ -10,16 +10,14 @@ import Foundation
 import RealmSwift
 
 class REALMRoute: Object {
-    @objc dynamic var id: Int = 0
     @objc dynamic var name: String = ""
     @objc dynamic var startDate: Date = Date()
     @objc dynamic var stopDate: Date? = nil
     @objc dynamic var timeInterval: Date? = nil
     let routeDotsCoordinates = List<REALMRouteDotsCoordinates>()
     
-    convenience init(id: Int, name: String, startDate: Date, stopDate: Date?, timeInterval: Date?,  routeDotsCoordinates:[REALMRouteDotsCoordinates] = []) {
+    convenience init(name: String, startDate: Date, stopDate: Date?, timeInterval: Date?,  routeDotsCoordinates:[REALMRouteDotsCoordinates] = []) {
         self.init()
-        self.id = id
         self.name = name
         self.startDate = startDate
         self.stopDate = stopDate
@@ -28,26 +26,26 @@ class REALMRoute: Object {
     }
         
     override static func primaryKey() -> String? {
-        return "id"
+        return "name"
     }
 }
 
 class REALMRouteDotsCoordinates: Object {
-    @objc dynamic var id: Int = 0
-    @objc dynamic var ownerid: Int = 0
+    @objc dynamic var time: Int = 0
+    @objc dynamic var ownerName: String = ""
     @objc dynamic var latitude: Double = 0.0
     @objc dynamic var longitude: Double = 0.0
     let owner = LinkingObjects(fromType: REALMRoute.self, property: "routeDotsCoordinates")
     
-    convenience init(id: Int, ownerid: Int, latitude: Double, longitude: Double) {
+    convenience init(time: Int, ownerName: String, latitude: Double, longitude: Double) {
         self.init()
-        self.id = id
-        self.ownerid = ownerid
+        self.time = time
+        self.ownerName = ownerName
         self.latitude = latitude
         self.longitude = longitude
     }
     
     override static func primaryKey() -> String? {
-        return "id"
+        return "time"
     }
 }
