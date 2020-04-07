@@ -19,11 +19,11 @@ class LocationManager {
         manager = CLLocationManager()
         manager?.allowsBackgroundLocationUpdates = true
         manager?.pausesLocationUpdatesAutomatically = false
-        manager?.requestAlwaysAuthorization()
         manager?.startMonitoringSignificantLocationChanges()
         manager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
 //        manager?.desiredAccuracy = .leastNormalMagnitude
         manager?.distanceFilter = 5.0
+        manager?.requestAlwaysAuthorization()
     }
 
 }
