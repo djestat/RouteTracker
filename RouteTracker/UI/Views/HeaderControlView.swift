@@ -9,6 +9,7 @@
 import UIKit
 
 protocol HeaderControlViewDelegate: class {
+    func didPressedLogoutButton()
     func didPressedShowLastRouteButton()
     func didPressedStartTrackerButton()
 }
@@ -18,6 +19,15 @@ class HeaderControlView: UIView, HeaderControlViewDelegate {
     weak var delegate: HeaderControlViewDelegate!
     public var isStartedTracker: Bool = false
 
+    private var logoutButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "logout"), for: .normal)
+        button.setImage(UIImage(named: "logout.highlighted"), for: .highlighted)
+        button.addTarget(self, action: #selector(didPressedLogoutButton), for: .touchUpInside)
+        return button
+    }()
+    
     private var showLastRouteButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -50,6 +60,7 @@ class HeaderControlView: UIView, HeaderControlViewDelegate {
     }
     
     func addSubviews() {
+        addSubview(logoutButton)
         addSubview(showLastRouteButton)
         addSubview(startTrackerButton)
         
@@ -59,9 +70,13 @@ class HeaderControlView: UIView, HeaderControlViewDelegate {
         let widthButton: CGFloat = 80
         
         NSLayoutConstraint.activate([
-            showLastRouteButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: safeAreaSpacing),
+            logoutButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: safeAreaSpacing),
+            logoutButton.heightAnchor.constraint(equalToConstant: heightButton),
+            logoutButton.widthAnchor.constraint(equalToConstant: heightButton),
+            logoutButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -safeAreaSpacing),
+            showLastRouteButton.leftAnchor.constraint(equalTo: logoutButton.rightAnchor, constant: safeAreaSpacing),
             showLastRouteButton.heightAnchor.constraint(equalToConstant: heightButton),
-//            showLastRouteButton.rightAnchor.constraint(equalTo: startTrackerButton.leftAnchor, constant: -safeAreaSpacing),
+            showLastRouteButton.rightAnchor.constraint(equalTo: startTrackerButton.leftAnchor, constant: -safeAreaSpacing),
             showLastRouteButton.widthAnchor.constraint(equalToConstant: widthButton * 2),
             showLastRouteButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -safeAreaSpacing),
             startTrackerButton.heightAnchor.constraint(equalToConstant: heightButton),
@@ -84,7 +99,10 @@ class HeaderControlView: UIView, HeaderControlViewDelegate {
     }
     
     // MARK: - Delegate Function
-
+    @objc func didPressedLogoutButton() {
+        delegate.didPressedLogoutButton()
+    }
+    
     @objc func didPressedShowLastRouteButton() {
         delegate.didPressedShowLastRouteButton()
     }

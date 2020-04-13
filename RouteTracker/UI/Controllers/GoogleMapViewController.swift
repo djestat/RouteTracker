@@ -73,6 +73,12 @@ class GoogleMapViewController: UIViewController, HeaderControlViewDelegate {
         locationManager.manager?.stopUpdatingLocation()
     }
     
+    func didPressedLogoutButton() {
+        dismiss(animated: true, completion: nil)
+        print("didPressedLogoutButton")
+        
+    }
+    
     func didPressedShowLastRouteButton() {
         print("didPressedShowLastRouteButton")
         if let isStarted = header?.isStartedTracker {

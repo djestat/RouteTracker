@@ -17,9 +17,12 @@
 		CE61FF552431330E007F2413 /* HeaderControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61FF542431330E007F2413 /* HeaderControlView.swift */; };
 		CE61FF592431360D007F2413 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61FF582431360D007F2413 /* LocationManager.swift */; };
 		CE6B47F6243BC15400F186CE /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6B47F5243BC15400F186CE /* Helper.swift */; };
+		CEAEBA542444EA58007A1A5E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAEBA532444EA58007A1A5E /* LoginViewController.swift */; };
+		CEAEBA562444EAAB007A1A5E /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAEBA552444EAAB007A1A5E /* RegistrationViewController.swift */; };
+		CEAEBA582444F3E5007A1A5E /* RealmUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAEBA572444F3E5007A1A5E /* RealmUser.swift */; };
 		CEF71EBE243120AF00056A88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF71EBD243120AF00056A88 /* AppDelegate.swift */; };
 		CEF71EC0243120AF00056A88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF71EBF243120AF00056A88 /* SceneDelegate.swift */; };
-		CEF71EC2243120AF00056A88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF71EC1243120AF00056A88 /* ViewController.swift */; };
+		CEF71EC2243120AF00056A88 /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF71EC1243120AF00056A88 /* GoogleMapViewController.swift */; };
 		CEF71EC5243120AF00056A88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF71EC3243120AF00056A88 /* Main.storyboard */; };
 		CEF71EC7243120B100056A88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF71EC6243120B100056A88 /* Assets.xcassets */; };
 		CEF71ECA243120B100056A88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF71EC8243120B100056A88 /* LaunchScreen.storyboard */; };
@@ -64,10 +67,13 @@
 		CE61FF542431330E007F2413 /* HeaderControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderControlView.swift; sourceTree = "<group>"; };
 		CE61FF582431360D007F2413 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		CE6B47F5243BC15400F186CE /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		CEAEBA532444EA58007A1A5E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		CEAEBA552444EAAB007A1A5E /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		CEAEBA572444F3E5007A1A5E /* RealmUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUser.swift; sourceTree = "<group>"; };
 		CEF71EBA243120AF00056A88 /* RouteTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouteTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF71EBD243120AF00056A88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEF71EBF243120AF00056A88 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CEF71EC1243120AF00056A88 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CEF71EC1243120AF00056A88 /* GoogleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapViewController.swift; sourceTree = "<group>"; };
 		CEF71EC4243120AF00056A88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEF71EC6243120B100056A88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEF71EC9243120B100056A88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -162,6 +168,7 @@
 			children = (
 				CE4D5A4F243A3FE800D11AE5 /* Route.swift */,
 				CE4D5A4B243A279400D11AE5 /* RealmRoute.swift */,
+				CEAEBA572444F3E5007A1A5E /* RealmUser.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -169,8 +176,8 @@
 		CE61FF5124312589007F2413 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				CE61FF542431330E007F2413 /* HeaderControlView.swift */,
-				CE61FF52243125BA007F2413 /* GoogleMapView.swift */,
+				CEAEBA522444EA31007A1A5E /* Controllers */,
+				CEAEBA512444EA1A007A1A5E /* Views */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -202,6 +209,25 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		CEAEBA512444EA1A007A1A5E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE61FF542431330E007F2413 /* HeaderControlView.swift */,
+				CE61FF52243125BA007F2413 /* GoogleMapView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CEAEBA522444EA31007A1A5E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CEAEBA532444EA58007A1A5E /* LoginViewController.swift */,
+				CEAEBA552444EAAB007A1A5E /* RegistrationViewController.swift */,
+				CEF71EC1243120AF00056A88 /* GoogleMapViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		CEF71EB1243120AF00056A88 = {
 			isa = PBXGroup;
 			children = (
@@ -229,7 +255,6 @@
 			children = (
 				CEF71EBD243120AF00056A88 /* AppDelegate.swift */,
 				CEF71EBF243120AF00056A88 /* SceneDelegate.swift */,
-				CEF71EC1243120AF00056A88 /* ViewController.swift */,
 				CEF71EC3243120AF00056A88 /* Main.storyboard */,
 				CE4D5A49243A247A00D11AE5 /* App */,
 				CE61FF56243135C2007F2413 /* Core */,
@@ -536,12 +561,15 @@
 			files = (
 				CE4D5A4C243A279400D11AE5 /* RealmRoute.swift in Sources */,
 				CE61FF53243125BA007F2413 /* GoogleMapView.swift in Sources */,
+				CEAEBA582444F3E5007A1A5E /* RealmUser.swift in Sources */,
 				CE4D5A50243A3FE800D11AE5 /* Route.swift in Sources */,
-				CEF71EC2243120AF00056A88 /* ViewController.swift in Sources */,
+				CEF71EC2243120AF00056A88 /* GoogleMapViewController.swift in Sources */,
+				CEAEBA562444EAAB007A1A5E /* RegistrationViewController.swift in Sources */,
 				CE61FF592431360D007F2413 /* LocationManager.swift in Sources */,
 				CEF71EBE243120AF00056A88 /* AppDelegate.swift in Sources */,
 				CE4D5A4E243A3DAE00D11AE5 /* RealmAdapter.swift in Sources */,
 				CE4D5A44243A206900D11AE5 /* DataBaseManager.swift in Sources */,
+				CEAEBA542444EA58007A1A5E /* LoginViewController.swift in Sources */,
 				CE61FF552431330E007F2413 /* HeaderControlView.swift in Sources */,
 				CE4D5A47243A22C000D11AE5 /* BackgroundModeManager.swift in Sources */,
 				CEF71EC0243120AF00056A88 /* SceneDelegate.swift in Sources */,
