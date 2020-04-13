@@ -7,6 +7,7 @@ target 'RouteTracker' do
 
   # Pods for RouteTracker
   pod 'GoogleMaps'
+  pod 'RealmSwift'
 
 
   target 'RouteTrackerTests' do

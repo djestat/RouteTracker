@@ -17,10 +17,13 @@ class LocationManager {
     
     func configure() {
         manager = CLLocationManager()
-        manager?.requestWhenInUseAuthorization()
-//        manager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        manager?.desiredAccuracy = .leastNormalMagnitude
-        manager?.distanceFilter = 1.0
+        manager?.allowsBackgroundLocationUpdates = true
+        manager?.pausesLocationUpdatesAutomatically = false
+        manager?.startMonitoringSignificantLocationChanges()
+        manager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+//        manager?.desiredAccuracy = .leastNormalMagnitude
+        manager?.distanceFilter = 5.0
+        manager?.requestAlwaysAuthorization()
     }
 
 }
