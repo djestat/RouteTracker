@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import GoogleMaps
 
-class GoogleMapViewController: UIViewController, HeaderControlViewDelegate {
+final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate {
 
     var header: HeaderControlView?
     var gMapView: GoogleMapView?
@@ -19,13 +19,14 @@ class GoogleMapViewController: UIViewController, HeaderControlViewDelegate {
     let locationManager = LocationManager()
     let realmAdapter = RealmAdapter()
     let helper: Helper = Helper()
+    
+    var onLogin: (() -> Void)?
         
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         locationManager.manager?.delegate = self
         addSubviews()
-        
     }
     
     // MARK: - Add Subviews
@@ -74,9 +75,10 @@ class GoogleMapViewController: UIViewController, HeaderControlViewDelegate {
     }
     
     func didPressedLogoutButton() {
-        dismiss(animated: true, completion: nil)
+//        dismiss(animated: true, completion: nil)
         print("didPressedLogoutButton")
-        
+        UserDefaults.standard.set(false, forKey: "isLogin")
+        onLogin?()
     }
     
     func didPressedShowLastRouteButton() {

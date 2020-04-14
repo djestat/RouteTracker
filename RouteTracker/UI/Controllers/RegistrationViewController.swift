@@ -8,12 +8,14 @@
 
 import UIKit
 
-class RegistrationViewController: UIViewController {
+final class RegistrationViewController: UIViewController {
 
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     let realmAdapter: RealmAdapter = RealmAdapter()
+    
+    var onLogin: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,7 @@ class RegistrationViewController: UIViewController {
     }
     
     @IBAction func backButton() {
+        onLogin?()
     }
     
     @IBAction func registrateButton() {

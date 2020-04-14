@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
 
     @IBOutlet weak var logoImageView: UIImageView! {
         didSet {
@@ -18,12 +18,16 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    var onMap: (() -> Void)?
+    var onRegistration: (() -> Void)?
+    
     let realmAdapter: RealmAdapter = RealmAdapter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
     }
     
     @IBAction func loginButton() {
@@ -33,6 +37,8 @@ class LoginViewController: UIViewController {
             if user.login != "nouser" && user.password != "no password" {
                 if loginTextField.text! == user.login && passwordTextField.text! == user.password {
                     print("OLA!!!!")
+                    UserDefaults.standard.set(true, forKey: "isLogin")
+                    onMap?()
                 } else {
                     print("NO")
                 }
@@ -41,7 +47,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func registrationButton() {
-        
+        onRegistration?()
     }
     
 }

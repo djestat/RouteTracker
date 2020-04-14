@@ -20,6 +20,9 @@
 		CEAEBA542444EA58007A1A5E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAEBA532444EA58007A1A5E /* LoginViewController.swift */; };
 		CEAEBA562444EAAB007A1A5E /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAEBA552444EAAB007A1A5E /* RegistrationViewController.swift */; };
 		CEAEBA582444F3E5007A1A5E /* RealmUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAEBA572444F3E5007A1A5E /* RealmUser.swift */; };
+		CEE7233B24463106004C34EF /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7233A24463106004C34EF /* BaseCoordinator.swift */; };
+		CEE7233D244632F0004C34EF /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7233C244632F0004C34EF /* ApplicationCoordinator.swift */; };
+		CEE7234124463BFB004C34EF /* CoordinatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7234024463BFB004C34EF /* CoordinatorHelper.swift */; };
 		CEF71EBE243120AF00056A88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF71EBD243120AF00056A88 /* AppDelegate.swift */; };
 		CEF71EC0243120AF00056A88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF71EBF243120AF00056A88 /* SceneDelegate.swift */; };
 		CEF71EC2243120AF00056A88 /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF71EC1243120AF00056A88 /* GoogleMapViewController.swift */; };
@@ -70,6 +73,9 @@
 		CEAEBA532444EA58007A1A5E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CEAEBA552444EAAB007A1A5E /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		CEAEBA572444F3E5007A1A5E /* RealmUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUser.swift; sourceTree = "<group>"; };
+		CEE7233A24463106004C34EF /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		CEE7233C244632F0004C34EF /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
+		CEE7234024463BFB004C34EF /* CoordinatorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorHelper.swift; sourceTree = "<group>"; };
 		CEF71EBA243120AF00056A88 /* RouteTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouteTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF71EBD243120AF00056A88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEF71EBF243120AF00056A88 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -185,6 +191,7 @@
 		CE61FF56243135C2007F2413 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				CEE7233924463060004C34EF /* Coordinator */,
 				CE6B47F4243BC13D00F186CE /* Helper */,
 				CE4D5A45243A229B00D11AE5 /* BackgroundModeManager */,
 				CE4D5A42243A204400D11AE5 /* DataBaseManager */,
@@ -226,6 +233,16 @@
 				CEF71EC1243120AF00056A88 /* GoogleMapViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CEE7233924463060004C34EF /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				CEE7234024463BFB004C34EF /* CoordinatorHelper.swift */,
+				CEE7233A24463106004C34EF /* BaseCoordinator.swift */,
+				CEE7233C244632F0004C34EF /* ApplicationCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		CEF71EB1243120AF00056A88 = {
@@ -559,6 +576,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEE7233D244632F0004C34EF /* ApplicationCoordinator.swift in Sources */,
 				CE4D5A4C243A279400D11AE5 /* RealmRoute.swift in Sources */,
 				CE61FF53243125BA007F2413 /* GoogleMapView.swift in Sources */,
 				CEAEBA582444F3E5007A1A5E /* RealmUser.swift in Sources */,
@@ -574,6 +592,8 @@
 				CE4D5A47243A22C000D11AE5 /* BackgroundModeManager.swift in Sources */,
 				CEF71EC0243120AF00056A88 /* SceneDelegate.swift in Sources */,
 				CE6B47F6243BC15400F186CE /* Helper.swift in Sources */,
+				CEE7234124463BFB004C34EF /* CoordinatorHelper.swift in Sources */,
+				CEE7233B24463106004C34EF /* BaseCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
