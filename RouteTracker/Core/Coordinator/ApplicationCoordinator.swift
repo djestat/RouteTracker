@@ -88,16 +88,6 @@ final class AuthCoordinator: BaseCoordinator {
         addDependency(coordinator)
         coordinator.start()
     }
-
-//    private func showMapModule() {
-//        let coordinator = MapCoordinator()
-//        coordinator.onFinishFlow = { [weak self, weak coordinator] in
-//            self?.removeDependency(coordinator)
-//            self?.start()
-//        }
-//        addDependency(coordinator)
-//        coordinator.start()
-//    }
 }
 
 final class RegistrationCoordinator: BaseCoordinator {
@@ -122,16 +112,6 @@ final class RegistrationCoordinator: BaseCoordinator {
         setAsRoot(rootController)
         self.rootController = rootController
     }
-    
-//    private func showLoginModule() {
-//        let coordinator = AuthCoordinator()
-//        coordinator.onFinishFlow = { [weak self, weak coordinator] in
-//            self?.removeDependency(coordinator)
-//            self?.start()
-//        }
-//        addDependency(coordinator)
-//        coordinator.start()
-//    }
 }
 
 final class MapCoordinator: BaseCoordinator {
@@ -156,14 +136,4 @@ final class MapCoordinator: BaseCoordinator {
         setAsRoot(rootController)
         self.rootController = rootController
     }
-//
-//    private func showLoginModule() {
-//        let coordinator = AuthCoordinator()
-//        coordinator.onFinishFlow = { [weak self, weak coordinator] in
-//            self?.removeDependency(coordinator)
-//            self?.start()
-//        }
-//        addDependency(coordinator)
-//        coordinator.start()
-//    }
 }
