@@ -16,6 +16,7 @@ final class RealmAdapter {
     private let realm: RealmDataBaseManager = RealmDataBaseManager()
     private let helper: Helper = Helper()
     
+    //MARK: - DOTS
     func saveRoutePathDotsPosition(_ time: Int, _ nameRoute: String,_ position: CLLocationCoordinate2D ) {
         let routeDotCoordinate = REALMRouteDotsCoordinates(time: time, ownerName: nameRoute, latitude: position.latitude, longitude: position.longitude)
         realm.save(data: routeDotCoordinate)
@@ -34,6 +35,19 @@ final class RealmAdapter {
             }
         }
         return routePath
+    }
+    
+    //MARK: - USERS
+    
+    func searchUserLogin(_ login: String) -> REALMUser {
+        let result = realm.getUserByLogin(login).first
+        let user: REALMUser = REALMUser(login: result?.login ?? "nouser", password: result?.password ?? "no password")
+        return user
+    }
+    
+    func saveUserLogin(_ login: String, _ password: String) {
+        let user = REALMUser(login: login, password: password)
+        realm.save(data: user)
     }
     
 }
