@@ -96,20 +96,4 @@ class GoogleMapView: GMSMapView  {
         self.animate(with: camera)
         showStartFinishMarkers(path)
     }
-    
-    public func showRouteTestsPath() {
-        let path = GMSMutablePath()
-        var latitude: CLLocationDegrees = 55.753795
-        var longitude:  CLLocationDegrees = 37.621153
-
-        for _ in 0...20 {
-            let randomDouble: Double = Double.random(in: 0.009...3)
-            latitude = latitude - randomDouble
-            longitude = longitude + randomDouble
-            let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-//            addMarker(coordinate)
-            path.add(coordinate)
-        }
-        showLastRoute(path)
-    }
 }

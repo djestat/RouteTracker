@@ -41,7 +41,7 @@ final class RealmAdapter {
     
     func searchUserLogin(_ login: String) -> REALMUser {
         let result = realm.getUserByLogin(login).first
-        let user: REALMUser = REALMUser(login: result?.login ?? "nouser", password: result?.password ?? "no password")
+        let user: REALMUser = REALMUser(login: result?.login ?? "no user", password: result?.password ?? "no password")
         return user
     }
     
