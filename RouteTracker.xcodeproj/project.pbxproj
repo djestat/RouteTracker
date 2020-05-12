@@ -23,6 +23,9 @@
 		CEE7233B24463106004C34EF /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7233A24463106004C34EF /* BaseCoordinator.swift */; };
 		CEE7233D244632F0004C34EF /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7233C244632F0004C34EF /* ApplicationCoordinator.swift */; };
 		CEE7234124463BFB004C34EF /* CoordinatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7234024463BFB004C34EF /* CoordinatorHelper.swift */; };
+		CEF35D89246B26BA00C8B8B7 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF35D88246B26BA00C8B8B7 /* NotificationManager.swift */; };
+		CEF35D8C246B373B00C8B8B7 /* connected.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEF35D8B246B373B00C8B8B7 /* connected.mp3 */; };
+		CEF35D8E246B3A6800C8B8B7 /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF35D8D246B3A6800C8B8B7 /* Tracker.swift */; };
 		CEF71EBE243120AF00056A88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF71EBD243120AF00056A88 /* AppDelegate.swift */; };
 		CEF71EC0243120AF00056A88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF71EBF243120AF00056A88 /* SceneDelegate.swift */; };
 		CEF71EC2243120AF00056A88 /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF71EC1243120AF00056A88 /* GoogleMapViewController.swift */; };
@@ -76,6 +79,9 @@
 		CEE7233A24463106004C34EF /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		CEE7233C244632F0004C34EF /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 		CEE7234024463BFB004C34EF /* CoordinatorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorHelper.swift; sourceTree = "<group>"; };
+		CEF35D88246B26BA00C8B8B7 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		CEF35D8B246B373B00C8B8B7 /* connected.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = connected.mp3; sourceTree = "<group>"; };
+		CEF35D8D246B3A6800C8B8B7 /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		CEF71EBA243120AF00056A88 /* RouteTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouteTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF71EBD243120AF00056A88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEF71EBF243120AF00056A88 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -175,6 +181,7 @@
 				CE4D5A4F243A3FE800D11AE5 /* Route.swift */,
 				CE4D5A4B243A279400D11AE5 /* RealmRoute.swift */,
 				CEAEBA572444F3E5007A1A5E /* RealmUser.swift */,
+				CEF35D8D246B3A6800C8B8B7 /* Tracker.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -191,6 +198,7 @@
 		CE61FF56243135C2007F2413 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				CEF35D87246B269200C8B8B7 /* NotificationManager */,
 				CEE7233924463060004C34EF /* Coordinator */,
 				CE6B47F4243BC13D00F186CE /* Helper */,
 				CE4D5A45243A229B00D11AE5 /* BackgroundModeManager */,
@@ -245,6 +253,14 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		CEF35D87246B269200C8B8B7 /* NotificationManager */ = {
+			isa = PBXGroup;
+			children = (
+				CEF35D88246B26BA00C8B8B7 /* NotificationManager.swift */,
+			);
+			path = NotificationManager;
+			sourceTree = "<group>";
+		};
 		CEF71EB1243120AF00056A88 = {
 			isa = PBXGroup;
 			children = (
@@ -277,6 +293,7 @@
 				CE61FF56243135C2007F2413 /* Core */,
 				CE61FF5124312589007F2413 /* UI */,
 				CEF71EC6243120B100056A88 /* Assets.xcassets */,
+				CEF35D8B246B373B00C8B8B7 /* connected.mp3 */,
 				CEF71EC8243120B100056A88 /* LaunchScreen.storyboard */,
 				CEF71ECB243120B100056A88 /* Info.plist */,
 			);
@@ -414,6 +431,7 @@
 			files = (
 				CEF71ECA243120B100056A88 /* LaunchScreen.storyboard in Resources */,
 				CEF71EC7243120B100056A88 /* Assets.xcassets in Resources */,
+				CEF35D8C246B373B00C8B8B7 /* connected.mp3 in Resources */,
 				CEF71EC5243120AF00056A88 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -588,9 +606,11 @@
 				CE4D5A4E243A3DAE00D11AE5 /* RealmAdapter.swift in Sources */,
 				CE4D5A44243A206900D11AE5 /* DataBaseManager.swift in Sources */,
 				CEAEBA542444EA58007A1A5E /* LoginViewController.swift in Sources */,
+				CEF35D8E246B3A6800C8B8B7 /* Tracker.swift in Sources */,
 				CE61FF552431330E007F2413 /* HeaderControlView.swift in Sources */,
 				CE4D5A47243A22C000D11AE5 /* BackgroundModeManager.swift in Sources */,
 				CEF71EC0243120AF00056A88 /* SceneDelegate.swift in Sources */,
+				CEF35D89246B26BA00C8B8B7 /* NotificationManager.swift in Sources */,
 				CE6B47F6243BC15400F186CE /* Helper.swift in Sources */,
 				CEE7234124463BFB004C34EF /* CoordinatorHelper.swift in Sources */,
 				CEE7233B24463106004C34EF /* BaseCoordinator.swift in Sources */,

@@ -15,9 +15,7 @@ protocol HeaderControlViewDelegate: class {
 }
 
 class HeaderControlView: UIView, HeaderControlViewDelegate {
-   
     weak var delegate: HeaderControlViewDelegate!
-    public var isStartedTracker: Bool = false
 
     private var logoutButton: UIButton = {
         let button = UIButton()
@@ -90,12 +88,12 @@ class HeaderControlView: UIView, HeaderControlViewDelegate {
     
     public func setInStartStateTrackerButton() {
         startTrackerButton.setTitle("Start", for: .normal)
-        isStartedTracker = false
+        Tracker.shared.setIsStrartedFalse()
     }
     
     private func setInStopStateTrackerButton() {
         startTrackerButton.setTitle("Stop", for: .normal)
-        isStartedTracker = true
+        Tracker.shared.setIsStrartedTrue()
     }
     
     // MARK: - Delegate Function
@@ -108,13 +106,13 @@ class HeaderControlView: UIView, HeaderControlViewDelegate {
     }
     
     @objc func didPressedStartTrackerButton() {
-        print("1 \(isStartedTracker)")
-        if !isStartedTracker {
+        print("1 \(Tracker.shared.isStarted)")
+        if !Tracker.shared.isStarted {
             setInStopStateTrackerButton()
-            print("2 \(isStartedTracker)")
-        } else if isStartedTracker {
+            print("2 \(Tracker.shared.isStarted)")
+        } else if Tracker.shared.isStarted {
             setInStartStateTrackerButton()
-            print("3 \(isStartedTracker)")
+            print("3 \(Tracker.shared.isStarted)")
         }
         delegate.didPressedStartTrackerButton()
     }
