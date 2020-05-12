@@ -41,7 +41,7 @@ class NotificationManager {
         let isStarted = Tracker.shared.isStarted
         print(Tracker.shared.isStarted)
         if isStarted == true {
-            content.body = "Come back and finish your track!"
+            content.body = "Come back and complete your track!"
         } else if isStarted == false {
             content.body = "Come back and start your new track!"
         }
