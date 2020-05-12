@@ -39,10 +39,9 @@ class NotificationManager {
         content.title = "RouteTracker"
         content.subtitle = "Don't forget me!"
         let isStarted = Tracker.shared.isStarted
-        print(Tracker.shared.isStarted)
-        if isStarted == true {
+        if isStarted {
             content.body = "Come back and complete your track!"
-        } else if isStarted == false {
+        } else if !isStarted {
             content.body = "Come back and start your new track!"
         }
         return content
