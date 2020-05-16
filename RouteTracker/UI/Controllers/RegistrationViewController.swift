@@ -63,7 +63,14 @@ final class RegistrationViewController: UIViewController {
     
     func registrationAlert() {
         let alert = UIAlertController(title: "Successful registration!", message: "Your login and password was added in data base.", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+//        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+
+        let okAction = UIAlertAction(title: "OK", style: .default) {
+            UIAlertAction in
+            self.backButton()
+        }
+        
+        alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
     }
 }
