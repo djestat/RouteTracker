@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import GoogleMaps
+import RxSwift
 
 final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate {
 
@@ -16,17 +17,18 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
     var gMapView: GoogleMapView?
     var routeName: String = ""
     let routePath: GMSMutablePath = GMSMutablePath()
-    let locationManager = LocationManager()
+    let locationManager = LocationManager.instance
     let realmAdapter = RealmAdapter()
     let helper: Helper = Helper()
-    
+    let bag = DisposeBag()
+
     var onLogin: (() -> Void)?
         
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        locationManager.manager?.delegate = self
         addSubviews()
+        configureLocationManager()
     }
     
     // MARK: - Add Subviews
@@ -67,11 +69,11 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
     // MARK: - Header location button functions
     
     func startTracker() {
-        locationManager.manager?.startUpdatingLocation()
+        locationManager.startUpdatingLocation()
     }
     
     func stopTracker() {
-        locationManager.manager?.stopUpdatingLocation()
+        locationManager.stopUpdatingLocation()
     }
     
     func didPressedLogoutButton() {
@@ -138,6 +140,23 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
         routePath.removeAllCoordinates()
     }
     
+    //MARK: - Configure and subscribe to location manager coordinate updates
+
+    func configureLocationManager() {
+        locationManager
+            .location
+            .asObservable()
+            .bind { [weak self] location in
+                guard let lastLocation = location else { return }
+                print("Now position: \(lastLocation.coordinate.latitude) \(lastLocation.coordinate.longitude)")
+                let position: CLLocationCoordinate2D = lastLocation.coordinate
+                if let isStarted = self?.header?.isStartedTracker {
+                    if isStarted {
+                        self?.saveRouteIntoRealm(position)
+                    }
+                }
+        }.disposed(by: bag)
+    }
     
     //MARK: - Alert and function for Show Last Track
     
@@ -161,27 +180,9 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
     func okAlert() {
         gMapView?.clear()
         stopTracker()
+        routePath.removeAllCoordinates()
         header?.setInStartStateTrackerButton()
         showLastRoute()
     }
 
-}
-
-extension GoogleMapViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        if let lastLocation = locations.last {
-            print(lastLocation)
-            let position: CLLocationCoordinate2D = lastLocation.coordinate
-            if let isStarted = header?.isStartedTracker {
-                if isStarted {
-                    saveRouteIntoRealm(position)
-                }
-            }
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
-    }
 }

@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,20 +16,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZU2-iN-E00">
-                                <rect key="frame" x="147" y="229" width="120" height="40"/>
+                                <rect key="frame" x="117" y="229" width="180" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Dcc-OK-Pp0"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="Wlk-OU-89J"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="Wlk-OU-89J"/>
                                 </constraints>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8fs-ww-6u4">
-                                <rect key="frame" x="147" y="294" width="120" height="40"/>
+                                <rect key="frame" x="117" y="294" width="180" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="JwT-N8-5wg"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="lI7-lM-907"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="lI7-lM-907"/>
                                 </constraints>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -62,7 +62,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
-                                    <action selector="loginButton" destination="XSk-pP-U8f" eventType="touchUpInside" id="AAj-Qj-WxK"/>
+                                    <action selector="loginButton" destination="XSk-pP-U8f" eventType="touchUpInside" id="7pW-Qq-YoA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -83,6 +83,7 @@
                         <viewLayoutGuide key="safeArea" id="qHn-Om-c2q"/>
                     </view>
                     <connections>
+                        <outlet property="loginButtonOutlet" destination="3aA-ak-nBp" id="W27-bV-NiC"/>
                         <outlet property="loginTextField" destination="ZU2-iN-E00" id="MIb-hl-wAE"/>
                         <outlet property="logoImageView" destination="o0z-aM-biX" id="Qn2-2b-X65"/>
                         <outlet property="passwordTextField" destination="8fs-ww-6u4" id="wh8-2J-l8j"/>
@@ -101,9 +102,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xEV-Wy-TOs">
-                                <rect key="frame" x="147" y="194" width="120" height="40"/>
+                                <rect key="frame" x="117" y="194" width="180" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="c4a-Wo-k8c"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="c4a-Wo-k8c"/>
                                     <constraint firstAttribute="height" constant="40" id="e1d-i0-ufk"/>
                                 </constraints>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -111,9 +112,9 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YHJ-Nv-yfa">
-                                <rect key="frame" x="147" y="259" width="120" height="40"/>
+                                <rect key="frame" x="117" y="259" width="180" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="X6u-hh-K5G"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="X6u-hh-K5G"/>
                                     <constraint firstAttribute="height" constant="40" id="kMd-6h-5zr"/>
                                 </constraints>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -162,6 +163,7 @@
                     <connections>
                         <outlet property="loginTextField" destination="xEV-Wy-TOs" id="8EZ-hi-KTW"/>
                         <outlet property="passwordTextField" destination="YHJ-Nv-yfa" id="TLU-he-ui7"/>
+                        <outlet property="registrateButtonOutlet" destination="sTx-iq-AKL" id="lCj-Td-Es9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4T7-hH-zbu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
