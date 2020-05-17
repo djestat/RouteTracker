@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import GoogleMaps
 import RxSwift
+//import AVFoundation
 
 final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate {
 
@@ -18,6 +19,7 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
     var routeName: String = ""
     let routePath: GMSMutablePath = GMSMutablePath()
     let locationManager = LocationManager.instance
+    let avatarManager = AvatarMarkerManager()
     let realmAdapter = RealmAdapter()
     let helper: Helper = Helper()
     let bag = DisposeBag()
@@ -62,6 +64,7 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
         let frame = CGRect(x: originX, y: originY, width: width, height: height)
         let mapView = GoogleMapView(frame: frame)
         gMapView = mapView
+        gMapView?.buttonDelegate = self
 
         self.view.addSubview(gMapView!)
     }
@@ -179,4 +182,25 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
         showLastRoute()
     }
 
+}
+
+extension GoogleMapViewController: GoogleMapViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func didPressedAddAvatarButton() {
+        print("didPressedAddAvatarButton")
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .camera
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        
+        present(imagePickerController, animated: true)
+    }
+        
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print("didFinishPickingMediaWithInfo")
+        guard let image = info[.editedImage] as? UIImage else { return }
+        avatarManager.saveAvatarToDisk(image)
+        dismiss(animated: true, completion: nil)
+    }
+    
 }

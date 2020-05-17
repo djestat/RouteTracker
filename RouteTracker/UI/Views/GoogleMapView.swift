@@ -11,7 +11,34 @@ import GoogleMaps
 
 private let coordinate = CLLocationCoordinate2D(latitude: 55.753795, longitude: 37.621153)
 
-class GoogleMapView: GMSMapView  {
+protocol GoogleMapViewDelegate: class {
+    func didPressedAddAvatarButton()
+}
+
+class GoogleMapView: GMSMapView, GoogleMapViewDelegate  {
+
+    weak var buttonDelegate: GoogleMapViewDelegate!
+    private let avatarManager = AvatarMarkerManager()
+    private var zoom: Float = 17
+    private var zoomNewValue: Float = 17
+
+    private var avatarButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "camera"), for: .normal)
+        button.setImage(UIImage(named: "camera.highlighted"), for: .highlighted)
+        button.addTarget(self, action: #selector(didPressedAddAvatarButton), for: .touchUpInside)
+        return button
+    }()
+    
+    private var zoomButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "zoom"), for: .normal)
+        button.setImage(UIImage(named: "zoom.highlighted"), for: .highlighted)
+        button.addTarget(self, action: #selector(didPressedZoomButton), for: .touchUpInside)
+        return button
+    }()
             
     //MARK: - Init and configure
     override init(frame: CGRect) {
@@ -32,15 +59,43 @@ class GoogleMapView: GMSMapView  {
         
         self.settings.compassButton = true
         self.settings.myLocationButton = true
+        addSubviews()
+    }
+    
+    func addSubviews() {
+        addSubview(avatarButton)
+        addSubview(zoomButton)
+        
+        let safeAreaSpacing: CGFloat = 10
+        
+        let heightButton: CGFloat = 60
+        let widthButton: CGFloat = heightButton
+        
+        NSLayoutConstraint.activate([
+            avatarButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: safeAreaSpacing),
+            avatarButton.heightAnchor.constraint(equalToConstant: heightButton),
+            avatarButton.widthAnchor.constraint(equalToConstant: widthButton),
+            avatarButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -safeAreaSpacing),
+            zoomButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: safeAreaSpacing),
+            zoomButton.heightAnchor.constraint(equalToConstant: heightButton),
+            zoomButton.widthAnchor.constraint(equalToConstant: widthButton),
+            zoomButton.bottomAnchor.constraint(equalTo: avatarButton.topAnchor, constant: -(3 * safeAreaSpacing))
+        ])
     }
     
     //MARK: - Centered Camera
     private func centeredCamera(_ position: CLLocationCoordinate2D) {
-//        let zoom = self.camera.zoom
-        let camera = GMSCameraPosition.camera(withTarget: position, zoom: 17)
+        if self.camera.zoom != zoom {
+            zoomNewValue = self.camera.zoom
+        }
+        if zoom != zoomNewValue {
+            zoom = zoomNewValue
+        }
+        let camera = GMSCameraPosition.camera(withTarget: position, zoom: zoom)
+        addAvatarMarker(position)
         self.animate(to: camera)
     }
-    
+        
     //MARK: - Add marker
     func addMarker(_ position: CLLocationCoordinate2D) {
         centeredCamera(position)
@@ -49,6 +104,18 @@ class GoogleMapView: GMSMapView  {
         marker.title = "Now"
         marker.snippet = "Now"
         marker.map = self
+    }
+    
+    func addAvatarMarker(_ position: CLLocationCoordinate2D) {
+        self.clear()
+        let image = avatarManager.readAvatarFromDisk()
+        if let image = image {
+            let marker = GMSMarker(position: position)
+            marker.icon = image
+            marker.title = "Hi!"
+            marker.snippet = "I'am here now"
+            marker.map = self
+        }
     }
     
     public func showStartFinishMarkers(_ path: GMSMutablePath) {
@@ -95,5 +162,15 @@ class GoogleMapView: GMSMapView  {
         polyline.strokeColor = .systemRed
         self.animate(with: camera)
         showStartFinishMarkers(path)
+    }
+    
+    //MARK: - Delegate function
+
+    @objc func didPressedAddAvatarButton() {
+        buttonDelegate.didPressedAddAvatarButton()
+    }
+    
+    @objc func didPressedZoomButton() {
+        zoomNewValue = 17
     }
 }
