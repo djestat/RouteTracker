@@ -85,28 +85,24 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
     
     func didPressedShowLastRouteButton() {
         print("didPressedShowLastRouteButton")
-        if let isStarted = header?.isStartedTracker {
-            if isStarted {
-                showAlert()
-            } else if !isStarted {
-//                gMapView?.showRouteTestsPath()
-                showLastRoute()
-            }
+        if Tracker.shared.isStarted {
+            showAlert()
+        } else if !Tracker.shared.isStarted {
+            //gMapView?.showRouteTestsPath()
+            showLastRoute()
         }
     }
     
     func didPressedStartTrackerButton() {
-        if let isStoped = header?.isStartedTracker {
-            if isStoped {
-                setNameForRoute()
-                gMapView?.clear()
-                startTracker()
-                print("Start tracker")
-            } else if !isStoped {
-                stopTracker()
-                clearPathAndNameForRoute()
-                print("Stop tracker")
-            }
+        if Tracker.shared.isStarted {
+            setNameForRoute()
+            gMapView?.clear()
+            startTracker()
+            print("Start tracker")
+        } else if !Tracker.shared.isStarted {
+            stopTracker()
+            clearPathAndNameForRoute()
+            print("Stop tracker")
         }
     }
     
@@ -150,10 +146,8 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
                 guard let lastLocation = location else { return }
                 print("Now position: \(lastLocation.coordinate.latitude) \(lastLocation.coordinate.longitude)")
                 let position: CLLocationCoordinate2D = lastLocation.coordinate
-                if let isStarted = self?.header?.isStartedTracker {
-                    if isStarted {
-                        self?.saveRouteIntoRealm(position)
-                    }
+                if Tracker.shared.isStarted {
+                    self?.saveRouteIntoRealm(position)
                 }
         }.disposed(by: bag)
     }
