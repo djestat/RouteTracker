@@ -11,35 +11,12 @@ import GoogleMaps
 
 private let coordinate = CLLocationCoordinate2D(latitude: 55.753795, longitude: 37.621153)
 
-protocol GoogleMapViewDelegate: class {
-    func didPressedAddAvatarButton()
-}
+class GoogleMapView: GMSMapView  {
 
-class GoogleMapView: GMSMapView, GoogleMapViewDelegate  {
-
-    weak var buttonDelegate: GoogleMapViewDelegate!
     private let avatarManager = AvatarMarkerManager()
     private var zoom: Float = 17
-    private var zoomNewValue: Float = 17
-
-    private var avatarButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "camera"), for: .normal)
-        button.setImage(UIImage(named: "camera.highlighted"), for: .highlighted)
-        button.addTarget(self, action: #selector(didPressedAddAvatarButton), for: .touchUpInside)
-        return button
-    }()
-    
-    private var zoomButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "zoom"), for: .normal)
-        button.setImage(UIImage(named: "zoom.highlighted"), for: .highlighted)
-        button.addTarget(self, action: #selector(didPressedZoomButton), for: .touchUpInside)
-        return button
-    }()
-            
+    public var zoomNewValue: Float = 17
+                
     //MARK: - Init and configure
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,30 +34,8 @@ class GoogleMapView: GMSMapView, GoogleMapViewDelegate  {
         self.isTrafficEnabled = false
         self.mapType = .normal
         
-        self.settings.compassButton = true
-        self.settings.myLocationButton = true
-        addSubviews()
-    }
-    
-    func addSubviews() {
-        addSubview(avatarButton)
-        addSubview(zoomButton)
-        
-        let safeAreaSpacing: CGFloat = 10
-        
-        let heightButton: CGFloat = 60
-        let widthButton: CGFloat = heightButton
-        
-        NSLayoutConstraint.activate([
-            avatarButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: safeAreaSpacing),
-            avatarButton.heightAnchor.constraint(equalToConstant: heightButton),
-            avatarButton.widthAnchor.constraint(equalToConstant: widthButton),
-            avatarButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -safeAreaSpacing),
-            zoomButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: safeAreaSpacing),
-            zoomButton.heightAnchor.constraint(equalToConstant: heightButton),
-            zoomButton.widthAnchor.constraint(equalToConstant: widthButton),
-            zoomButton.bottomAnchor.constraint(equalTo: avatarButton.topAnchor, constant: -(3 * safeAreaSpacing))
-        ])
+//        self.settings.compassButton = true
+//        self.settings.myLocationButton = true
     }
     
     //MARK: - Centered Camera
@@ -159,18 +114,9 @@ class GoogleMapView: GMSMapView, GoogleMapViewDelegate  {
         polyline.strokeWidth = 7
         polyline.geodesic = true
         polyline.map = self
-        polyline.strokeColor = .systemRed
+        polyline.strokeColor = .systemTeal
         self.animate(with: camera)
         showStartFinishMarkers(path)
     }
     
-    //MARK: - Delegate function
-
-    @objc func didPressedAddAvatarButton() {
-        buttonDelegate.didPressedAddAvatarButton()
-    }
-    
-    @objc func didPressedZoomButton() {
-        zoomNewValue = 17
-    }
 }
