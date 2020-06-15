@@ -12,10 +12,11 @@ import GoogleMaps
 import RxSwift
 //import AVFoundation
 
-final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate {
+final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate, FooterControlViewDelegate {
 
     var header: HeaderControlView?
     var gMapView: GoogleMapView?
+    var footer: FooterControlView?
     var routeName: String = ""
     let routePath: GMSMutablePath = GMSMutablePath()
     let locationManager = LocationManager.instance
@@ -38,10 +39,10 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
     func addSubviews() {
         addHeaderControlView()
         addGoogleMapView()
+        addFooterControlView()
     }
     
     func addHeaderControlView() {
-        
         let originX: Int = 0
         let originY: Int = 0
         let width: Int = Int(self.view.frame.size.width)
@@ -59,14 +60,27 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
         let originX: Int = 0
         let originY: Int = 100
         let width: Int = Int(self.view.frame.size.width)
-        let height: Int = Int(self.view.frame.size.height) - originY
+        let height: Int = Int(self.view.frame.size.height) - originY - 150
 
         let frame = CGRect(x: originX, y: originY, width: width, height: height)
         let mapView = GoogleMapView(frame: frame)
         gMapView = mapView
-        gMapView?.buttonDelegate = self
 
         self.view.addSubview(gMapView!)
+    }
+    
+    func addFooterControlView() {
+        let width: Int = Int(self.view.frame.size.width)
+        let height: Int = 200
+        let originX: Int = 0
+        let originY: Int = 50 + Int(gMapView!.frame.size.height)
+
+        let frame = CGRect(x: originX, y: originY, width: width, height: height)
+        let footerView = FooterControlView(frame: frame)
+        footerView.delegate = self
+        footer = footerView
+        
+        self.view.addSubview(footerView)
     }
     
     // MARK: - Header location button functions
@@ -97,6 +111,7 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
     }
     
     func didPressedStartTrackerButton() {
+        print("didPressedStartTrackerButton")
         if Tracker.shared.isStarted {
             setNameForRoute()
             gMapView?.clear()
@@ -107,6 +122,11 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
             clearPathAndNameForRoute()
             print("Stop tracker")
         }
+    }
+    
+    func didPressedZoomButton() {
+        print("didPressedZoomButton")
+        gMapView?.zoomNewValue = 17
     }
     
     //MARK: - Realm function for show and save Track
@@ -178,18 +198,29 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
         gMapView?.clear()
         stopTracker()
         routePath.removeAllCoordinates()
-        header?.setInStartStateTrackerButton()
+        footer?.setInStartStateTrackerButton()
         showLastRoute()
     }
 
 }
 
-extension GoogleMapViewController: GoogleMapViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func didPressedAddAvatarButton() {
+extension GoogleMapViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func didPressedAddAvatarCameraButton() {
         print("didPressedAddAvatarButton")
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = .camera
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        
+        present(imagePickerController, animated: true)
+    }
+    
+    func didPressedAddAvatarAlbumButton() {
+        print("didPressedAddAvatarButton")
+        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
         imagePickerController.allowsEditing = true
         imagePickerController.delegate = self
         

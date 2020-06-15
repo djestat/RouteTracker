@@ -36,7 +36,7 @@ final class LocationManager: NSObject {
         locationManager.startMonitoringSignificantLocationChanges()
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
 //        locationManager.desiredAccuracy = .leastNormalMagnitude
-        locationManager.distanceFilter = 5.0
+        locationManager.distanceFilter = 3.0
         locationManager.requestAlwaysAuthorization()
     }
 
