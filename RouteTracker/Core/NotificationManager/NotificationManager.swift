@@ -49,7 +49,7 @@ class NotificationManager {
     
     private func makeIntervalNotificatioTrigger() -> UNNotificationTrigger {
         return UNTimeIntervalNotificationTrigger(
-            timeInterval: 30,
+            timeInterval: 5,
             repeats: false
         )
     }
