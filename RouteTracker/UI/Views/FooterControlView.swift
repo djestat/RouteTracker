@@ -79,7 +79,10 @@ class FooterControlView: UIView, FooterControlViewDelegate {
     }
     
     func configure() {
-        if let backgroundImage = UIImage(named: "background") {
+        let backgroundImages = ["background","background2","background3","background4"]
+        let randomInt = Int.random(in: 0..<backgroundImages.count)
+        let image = backgroundImages[randomInt]
+        if let backgroundImage = UIImage(named: image) {
             layer.contents = backgroundImage.cgImage
         }
     }
