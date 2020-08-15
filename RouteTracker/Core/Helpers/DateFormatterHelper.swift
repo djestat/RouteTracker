@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class Helper {
+final class DateFormatterHelper {
     
     //MARK: - Date Formatter functions
     func convertDateToName(_ inputDate: String) -> String {

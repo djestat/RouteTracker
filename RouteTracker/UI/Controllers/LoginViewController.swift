@@ -12,11 +12,7 @@ import RxCocoa
 
 final class LoginViewController: UIViewController {
 
-    @IBOutlet weak var logoImageView: UIImageView! {
-        didSet {
-            logoImageView.layer.cornerRadius = 10
-        }
-    }
+    @IBOutlet weak var logoImageView: UIImageView! 
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButtonOutlet: UIButton!

@@ -12,17 +12,18 @@ import GoogleMaps
 import RxSwift
 //import AVFoundation
 
-final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate, FooterControlViewDelegate {
+final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate, FooterControlViewDelegate, FooterStartViewDelegate {
 
     var header: HeaderControlView?
     var gMapView: GoogleMapView?
-    var footer: FooterControlView?
+    var footerStart: FooterStartView?
+    var footerControl: FooterControlView?
     var routeName: String = ""
     let routePath: GMSMutablePath = GMSMutablePath()
     let locationManager = LocationManager.instance
     let avatarManager = AvatarMarkerManager()
     let realmAdapter = RealmAdapter()
-    let helper: Helper = Helper()
+    let dateFormatter: DateFormatterHelper = DateFormatterHelper()
     let bag = DisposeBag()
 
     var onLogin: (() -> Void)?
@@ -40,6 +41,7 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
         addHeaderControlView()
         addGoogleMapView()
         addFooterControlView()
+        addFooterStartView()
     }
     
     func addHeaderControlView() {
@@ -57,10 +59,10 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
     }
     
     func addGoogleMapView() {
-        let originX: Int = 0
-        let originY: Int = 100
-        let width: Int = Int(self.view.frame.size.width)
-        let height: Int = Int(self.view.frame.size.height) - originY - 150
+        let originX: CGFloat = 0
+        let originY: CGFloat = 100
+        let width: CGFloat = self.view.frame.size.width
+        let height: CGFloat = self.view.frame.size.height - originY
 
         let frame = CGRect(x: originX, y: originY, width: width, height: height)
         let mapView = GoogleMapView(frame: frame)
@@ -70,17 +72,37 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
     }
     
     func addFooterControlView() {
-        let width: Int = Int(self.view.frame.size.width)
-        let height: Int = 200
-        let originX: Int = 0
-        let originY: Int = 50 + Int(gMapView!.frame.size.height)
-
+        let width: CGFloat = self.view.frame.size.width
+        let height: CGFloat = 138
+        let originX: CGFloat = 0
+        let originY: CGFloat = self.view.frame.size.height - height
+        
         let frame = CGRect(x: originX, y: originY, width: width, height: height)
         let footerView = FooterControlView(frame: frame)
         footerView.delegate = self
-        footer = footerView
-        
+        footerControl = footerView
+                
         self.view.addSubview(footerView)
+    }
+    
+    func addFooterStartView() {
+        let width: CGFloat = 80
+        let height: CGFloat = 80
+        let originX: CGFloat = self.view.frame.midX - width / 2
+        let originY: CGFloat = footerControl!.frame.origin.y - height / 3
+
+        let frame = CGRect(x: originX, y: originY, width: width, height: height)
+        let footerStartView = FooterStartView(frame: frame)
+        footerStartView.delegate = self
+        footerStart = footerStartView
+        
+        self.view.addSubview(footerStartView)
+        
+        footerControl?.layer.mask = ViewPathDrawing.draw.createFooterControlShapeLayer(firstView: footerControl!, secondView: footerStart!)
+        footerControl?.clipsToBounds = true
+        
+        footerStart?.layer.mask = ViewPathDrawing.draw.createFooterStartShapeLayer(firstView: footerStart!)
+        footerStart?.clipsToBounds = true
     }
     
     // MARK: - Header location button functions
@@ -94,7 +116,6 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
     }
     
     func didPressedLogoutButton() {
-//        dismiss(animated: true, completion: nil)
         print("didPressedLogoutButton")
         UserDefaults.standard.set(false, forKey: "isLogin")
         onLogin?()
@@ -138,7 +159,7 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
     
     func saveRouteIntoRealm(_ newPosition: CLLocationCoordinate2D) {
         let date = Date.init(timeIntervalSinceNow: 0)
-        let time = helper.convertDateToInt(date.description)
+        let time = dateFormatter.convertDateToInt(date.description)
         realmAdapter.saveRoutePathDotsPosition(time, routeName, newPosition)
         routePath.add(newPosition)
         gMapView?.drawRoute(newPosition, routePath)
@@ -149,7 +170,7 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
     func setNameForRoute() {
         let date: Date = Date(timeIntervalSinceNow: 0)
         print(date)
-        let dateFormat = self.helper.convertDateToName(date.description)
+        let dateFormat = self.dateFormatter.convertDateToName(date.description)
         print(dateFormat)
         routeName = dateFormat
     }
@@ -198,7 +219,7 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
         gMapView?.clear()
         stopTracker()
         routePath.removeAllCoordinates()
-        footer?.setInStartStateTrackerButton()
+        footerStart?.setInStartStateTrackerButton()
         showLastRoute()
     }
 
