@@ -14,7 +14,7 @@ import GoogleMaps
 final class RealmAdapter {
     
     private let realm: RealmDataBaseManager = RealmDataBaseManager()
-    private let helper: Helper = Helper()
+    private let helper: DateFormatterHelper = DateFormatterHelper()
     
     //MARK: - DOTS
     func saveRoutePathDotsPosition(_ time: Int, _ nameRoute: String,_ position: CLLocationCoordinate2D ) {
