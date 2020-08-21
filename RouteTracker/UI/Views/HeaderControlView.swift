@@ -27,7 +27,7 @@ class HeaderControlView: UIView, HeaderControlViewDelegate {
     private var routeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .systemPurple
+        label.textColor = UIColor.FlatColor.Blue.Denim
         label.text = "Route Tracker"
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 22)

@@ -73,7 +73,7 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
     
     func addFooterControlView() {
         let width: CGFloat = self.view.frame.size.width
-        let height: CGFloat = 138
+        let height: CGFloat = 128
         let originX: CGFloat = 0
         let originY: CGFloat = self.view.frame.size.height - height
         
@@ -86,10 +86,10 @@ final class GoogleMapViewController: UIViewController, HeaderControlViewDelegate
     }
     
     func addFooterStartView() {
-        let width: CGFloat = 80
-        let height: CGFloat = 80
+        let width: CGFloat = 90
+        let height: CGFloat = width
         let originX: CGFloat = self.view.frame.midX - width / 2
-        let originY: CGFloat = footerControl!.frame.origin.y - height / 3
+        let originY: CGFloat = footerControl!.frame.origin.y - height / 2
 
         let frame = CGRect(x: originX, y: originY, width: width, height: height)
         let footerStartView = FooterStartView(frame: frame)

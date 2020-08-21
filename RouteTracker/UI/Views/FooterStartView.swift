@@ -36,7 +36,7 @@ class FooterStartView: UIView, FooterStartViewDelegate {
     }
     
     func configure() {
-        self.backgroundColor = UIColor.FlatColor.Gray.Iron
+        self.backgroundColor = UIColor.FlatColor.Blue.Denim
     }
     
     func addSubviews() {

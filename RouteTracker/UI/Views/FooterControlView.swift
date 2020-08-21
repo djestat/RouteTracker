@@ -68,7 +68,7 @@ class FooterControlView: UIView, FooterControlViewDelegate {
     }
     
     func configure() {
-        self.backgroundColor = UIColor.FlatColor.Gray.Iron
+        self.backgroundColor = UIColor.FlatColor.Blue.Denim
     }
     
     func addSubviews() {
@@ -85,19 +85,19 @@ class FooterControlView: UIView, FooterControlViewDelegate {
             avatarCameraButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: safeAreaSpacing),
             avatarCameraButton.heightAnchor.constraint(equalToConstant: heightButton),
             avatarCameraButton.widthAnchor.constraint(equalToConstant: heightButton),
-            avatarCameraButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -(safeAreaSpacing * 2)),
+            avatarCameraButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -(safeAreaSpacing)),
             avatarPhotoButton.leftAnchor.constraint(equalTo: avatarCameraButton.rightAnchor, constant: safeAreaSpacing),
             avatarPhotoButton.heightAnchor.constraint(equalToConstant: heightButton),
             avatarPhotoButton.widthAnchor.constraint(equalToConstant: heightButton),
-            avatarPhotoButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -safeAreaSpacing),
+            avatarPhotoButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0),
             zoomButton.rightAnchor.constraint(equalTo: showLastRouteButton.leftAnchor, constant: -safeAreaSpacing),
             zoomButton.heightAnchor.constraint(equalToConstant: heightButton),
             zoomButton.widthAnchor.constraint(equalToConstant: heightButton),
-            zoomButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -safeAreaSpacing),
+            zoomButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0),
             showLastRouteButton.heightAnchor.constraint(equalToConstant: heightButton),
             showLastRouteButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -safeAreaSpacing),
             showLastRouteButton.widthAnchor.constraint(equalToConstant: heightButton),
-            showLastRouteButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -(safeAreaSpacing * 2))
+            showLastRouteButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -(safeAreaSpacing))
         ])
     }
     

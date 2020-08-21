@@ -34,9 +34,10 @@ final class LocationManager: NSObject {
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.startMonitoringSignificantLocationChanges()
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+//        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.desiredAccuracy = .greatestFiniteMagnitude
 //        locationManager.desiredAccuracy = .leastNormalMagnitude
-        locationManager.distanceFilter = 3.0
+//        locationManager.distanceFilter = 15.0
         locationManager.requestAlwaysAuthorization()
     }
 

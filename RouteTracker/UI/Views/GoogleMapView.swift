@@ -34,7 +34,7 @@ class GoogleMapView: GMSMapView  {
         self.isTrafficEnabled = false
         self.mapType = .normal
         
-//        self.settings.compassButton = true
+        self.settings.compassButton = true
 //        self.settings.myLocationButton = true
     }
     
@@ -101,7 +101,7 @@ class GoogleMapView: GMSMapView  {
         polyline.strokeWidth = 7
         polyline.geodesic = true
         polyline.map = self
-        polyline.strokeColor = .systemRed
+        polyline.strokeColor = UIColor.FlatColor.Red.Valencia
     }
     
     //MARK: - Show route path 
@@ -109,12 +109,14 @@ class GoogleMapView: GMSMapView  {
     public func showLastRoute(_ path: GMSMutablePath) {
         self.clear()
         let bounds = GMSCoordinateBounds(path: path)
-        let camera = GMSCameraUpdate.fit(bounds, withPadding: 50)
+        let camera = GMSCameraUpdate.fit(bounds, withPadding: 80)
+//        let edgeInsets = UIEdgeInsets(top: 80, left: 25, bottom: 25, right: 130)
+//        let camera = GMSCameraUpdate.fit(bounds, with: edgeInsets)
         let polyline = GMSPolyline(path: path)
         polyline.strokeWidth = 7
         polyline.geodesic = true
         polyline.map = self
-        polyline.strokeColor = .systemTeal
+        polyline.strokeColor = UIColor.FlatColor.Blue.Denim
         self.animate(with: camera)
         showStartFinishMarkers(path)
     }
