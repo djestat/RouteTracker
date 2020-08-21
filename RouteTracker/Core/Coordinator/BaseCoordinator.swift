@@ -34,7 +34,6 @@ class BaseCoordinator {
     }
     
     func setAsRoot(_ controller: UIViewController) {
-//        UIApplication.shared.keyWindow?.rootViewController = controller
         let windows = UIApplication.shared.windows.first
         windows?.rootViewController = controller
     }

@@ -12,14 +12,14 @@ import RxCocoa
 
 final class LoginViewController: UIViewController {
 
-    @IBOutlet weak var logoImageView: UIImageView! {
-        didSet {
-            logoImageView.layer.cornerRadius = 10
-        }
-    }
+    @IBOutlet weak var logoImageView: UIImageView! 
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var loginButtonOutlet: UIButton!
+    @IBOutlet weak var loginButtonOutlet: UIButton! {
+        didSet {
+            loginButtonOutlet.titleLabel?.textColor = UIColor.FlatColor.Blue.Denim
+        }
+    }
     
     var onMap: (() -> Void)?
     var onRegistration: (() -> Void)?

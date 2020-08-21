@@ -14,10 +14,15 @@
 		CE4D5A4C243A279400D11AE5 /* RealmRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4D5A4B243A279400D11AE5 /* RealmRoute.swift */; };
 		CE4D5A4E243A3DAE00D11AE5 /* RealmAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4D5A4D243A3DAE00D11AE5 /* RealmAdapter.swift */; };
 		CE4D5A50243A3FE800D11AE5 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4D5A4F243A3FE800D11AE5 /* Route.swift */; };
+		CE5921A424E7220700963CEE /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5921A324E7220700963CEE /* UIViewExtension.swift */; };
+		CE5921A624E7268D00963CEE /* ViewPathDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5921A524E7268D00963CEE /* ViewPathDrawing.swift */; };
+		CE5921A824E7407E00963CEE /* CustomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5921A724E7407E00963CEE /* CustomeView.swift */; };
+		CE5921AA24E741E000963CEE /* FooterStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5921A924E741E000963CEE /* FooterStartView.swift */; };
+		CE5921AC24E74D5500963CEE /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5921AB24E74D5500963CEE /* ColorExtension.swift */; };
 		CE61FF53243125BA007F2413 /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61FF52243125BA007F2413 /* GoogleMapView.swift */; };
 		CE61FF552431330E007F2413 /* HeaderControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61FF542431330E007F2413 /* HeaderControlView.swift */; };
 		CE61FF592431360D007F2413 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61FF582431360D007F2413 /* LocationManager.swift */; };
-		CE6B47F6243BC15400F186CE /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6B47F5243BC15400F186CE /* Helper.swift */; };
+		CE6B47F6243BC15400F186CE /* DateFormatterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6B47F5243BC15400F186CE /* DateFormatterHelper.swift */; };
 		CEAEBA542444EA58007A1A5E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAEBA532444EA58007A1A5E /* LoginViewController.swift */; };
 		CEAEBA562444EAAB007A1A5E /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAEBA552444EAAB007A1A5E /* RegistrationViewController.swift */; };
 		CEAEBA582444F3E5007A1A5E /* RealmUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAEBA572444F3E5007A1A5E /* RealmUser.swift */; };
@@ -71,10 +76,15 @@
 		CE4D5A4B243A279400D11AE5 /* RealmRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRoute.swift; sourceTree = "<group>"; };
 		CE4D5A4D243A3DAE00D11AE5 /* RealmAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAdapter.swift; sourceTree = "<group>"; };
 		CE4D5A4F243A3FE800D11AE5 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		CE5921A324E7220700963CEE /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		CE5921A524E7268D00963CEE /* ViewPathDrawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPathDrawing.swift; sourceTree = "<group>"; };
+		CE5921A724E7407E00963CEE /* CustomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomeView.swift; sourceTree = "<group>"; };
+		CE5921A924E741E000963CEE /* FooterStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterStartView.swift; sourceTree = "<group>"; };
+		CE5921AB24E74D5500963CEE /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		CE61FF52243125BA007F2413 /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
 		CE61FF542431330E007F2413 /* HeaderControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderControlView.swift; sourceTree = "<group>"; };
 		CE61FF582431360D007F2413 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		CE6B47F5243BC15400F186CE /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		CE6B47F5243BC15400F186CE /* DateFormatterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterHelper.swift; sourceTree = "<group>"; };
 		CEAEBA532444EA58007A1A5E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CEAEBA552444EAAB007A1A5E /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		CEAEBA572444F3E5007A1A5E /* RealmUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUser.swift; sourceTree = "<group>"; };
@@ -188,9 +198,20 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
+		CE5921AD24E74D8100963CEE /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CE5921A324E7220700963CEE /* UIViewExtension.swift */,
+				CE5921A524E7268D00963CEE /* ViewPathDrawing.swift */,
+				CE5921AB24E74D5500963CEE /* ColorExtension.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		CE61FF5124312589007F2413 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				CE5921AD24E74D8100963CEE /* Helpers */,
 				CEAEBA522444EA31007A1A5E /* Controllers */,
 				CEAEBA512444EA1A007A1A5E /* Views */,
 			);
@@ -203,7 +224,7 @@
 				CE256C222471BFEA00AE0B8E /* AvatarMarkerManager */,
 				CEF35D87246B269200C8B8B7 /* NotificationManager */,
 				CEE7233924463060004C34EF /* Coordinator */,
-				CE6B47F4243BC13D00F186CE /* Helper */,
+				CE6B47F4243BC13D00F186CE /* Helpers */,
 				CE4D5A42243A204400D11AE5 /* DataBaseManager */,
 				CE61FF57243135DE007F2413 /* LocationManager */,
 			);
@@ -218,12 +239,12 @@
 			path = LocationManager;
 			sourceTree = "<group>";
 		};
-		CE6B47F4243BC13D00F186CE /* Helper */ = {
+		CE6B47F4243BC13D00F186CE /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				CE6B47F5243BC15400F186CE /* Helper.swift */,
+				CE6B47F5243BC15400F186CE /* DateFormatterHelper.swift */,
 			);
-			path = Helper;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		CEAEBA512444EA1A007A1A5E /* Views */ = {
@@ -231,7 +252,9 @@
 			children = (
 				CE61FF542431330E007F2413 /* HeaderControlView.swift */,
 				CE61FF52243125BA007F2413 /* GoogleMapView.swift */,
+				CE5921A924E741E000963CEE /* FooterStartView.swift */,
 				CE15CDED24965ACD00B7E591 /* FooterControlView.swift */,
+				CE5921A724E7407E00963CEE /* CustomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -599,25 +622,30 @@
 			files = (
 				CEE7233D244632F0004C34EF /* ApplicationCoordinator.swift in Sources */,
 				CE4D5A4C243A279400D11AE5 /* RealmRoute.swift in Sources */,
+				CE5921A424E7220700963CEE /* UIViewExtension.swift in Sources */,
 				CE61FF53243125BA007F2413 /* GoogleMapView.swift in Sources */,
 				CEAEBA582444F3E5007A1A5E /* RealmUser.swift in Sources */,
+				CE5921AA24E741E000963CEE /* FooterStartView.swift in Sources */,
 				CE4D5A50243A3FE800D11AE5 /* Route.swift in Sources */,
 				CEF71EC2243120AF00056A88 /* GoogleMapViewController.swift in Sources */,
+				CE5921A824E7407E00963CEE /* CustomeView.swift in Sources */,
 				CEAEBA562444EAAB007A1A5E /* RegistrationViewController.swift in Sources */,
 				CE61FF592431360D007F2413 /* LocationManager.swift in Sources */,
 				CEF71EBE243120AF00056A88 /* AppDelegate.swift in Sources */,
 				CE4D5A4E243A3DAE00D11AE5 /* RealmAdapter.swift in Sources */,
 				CE4D5A44243A206900D11AE5 /* DataBaseManager.swift in Sources */,
+				CE5921A624E7268D00963CEE /* ViewPathDrawing.swift in Sources */,
 				CEAEBA542444EA58007A1A5E /* LoginViewController.swift in Sources */,
 				CEF35D8E246B3A6800C8B8B7 /* Tracker.swift in Sources */,
 				CE61FF552431330E007F2413 /* HeaderControlView.swift in Sources */,
 				CE256C242471C01600AE0B8E /* AvatarMarkerManager.swift in Sources */,
 				CEF71EC0243120AF00056A88 /* SceneDelegate.swift in Sources */,
 				CEF35D89246B26BA00C8B8B7 /* NotificationManager.swift in Sources */,
-				CE6B47F6243BC15400F186CE /* Helper.swift in Sources */,
+				CE6B47F6243BC15400F186CE /* DateFormatterHelper.swift in Sources */,
 				CE15CDEE24965ACD00B7E591 /* FooterControlView.swift in Sources */,
 				CEE7234124463BFB004C34EF /* CoordinatorHelper.swift in Sources */,
 				CEE7233B24463106004C34EF /* BaseCoordinator.swift in Sources */,
+				CE5921AC24E74D5500963CEE /* ColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -792,7 +820,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = JR32BVRSKV;
 				INFOPLIST_FILE = RouteTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -811,7 +839,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = JR32BVRSKV;
 				INFOPLIST_FILE = RouteTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
