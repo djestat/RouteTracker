@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B43F103B1499CADC4FAFD550 /* Pods_RouteTracker_RouteTrackerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C93D14A14A990DC9D9063435 /* Pods_RouteTracker_RouteTrackerUITests.framework */; };
 		CE15CDEE24965ACD00B7E591 /* FooterControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15CDED24965ACD00B7E591 /* FooterControlView.swift */; };
+		CE1E9F2124F44104009AA6E9 /* DegreesConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E9F2024F44104009AA6E9 /* DegreesConverter.swift */; };
 		CE256C242471C01600AE0B8E /* AvatarMarkerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE256C232471C01600AE0B8E /* AvatarMarkerManager.swift */; };
 		CE4D5A44243A206900D11AE5 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4D5A43243A206900D11AE5 /* DataBaseManager.swift */; };
 		CE4D5A4C243A279400D11AE5 /* RealmRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4D5A4B243A279400D11AE5 /* RealmRoute.swift */; };
@@ -71,6 +72,7 @@
 		9ADAB5EDCA432C27BE41D0B2 /* Pods-RouteTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RouteTrackerTests.debug.xcconfig"; path = "Target Support Files/Pods-RouteTrackerTests/Pods-RouteTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C93D14A14A990DC9D9063435 /* Pods_RouteTracker_RouteTrackerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RouteTracker_RouteTrackerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE15CDED24965ACD00B7E591 /* FooterControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterControlView.swift; sourceTree = "<group>"; };
+		CE1E9F2024F44104009AA6E9 /* DegreesConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DegreesConverter.swift; sourceTree = "<group>"; };
 		CE256C232471C01600AE0B8E /* AvatarMarkerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarMarkerManager.swift; sourceTree = "<group>"; };
 		CE4D5A43243A206900D11AE5 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		CE4D5A4B243A279400D11AE5 /* RealmRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRoute.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				CE5921A324E7220700963CEE /* UIViewExtension.swift */,
 				CE5921A524E7268D00963CEE /* ViewPathDrawing.swift */,
 				CE5921AB24E74D5500963CEE /* ColorExtension.swift */,
+				CE1E9F2024F44104009AA6E9 /* DegreesConverter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				CEF71EC2243120AF00056A88 /* GoogleMapViewController.swift in Sources */,
 				CE5921A824E7407E00963CEE /* CustomeView.swift in Sources */,
 				CEAEBA562444EAAB007A1A5E /* RegistrationViewController.swift in Sources */,
+				CE1E9F2124F44104009AA6E9 /* DegreesConverter.swift in Sources */,
 				CE61FF592431360D007F2413 /* LocationManager.swift in Sources */,
 				CEF71EBE243120AF00056A88 /* AppDelegate.swift in Sources */,
 				CE4D5A4E243A3DAE00D11AE5 /* RealmAdapter.swift in Sources */,
